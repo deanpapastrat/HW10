@@ -3,6 +3,7 @@
 //
 
 #include "main.h"
+#include <stdio.h>
 
 //functions in mylib.c
 void waitForVBlank();
@@ -15,9 +16,21 @@ u16 *vid_flip();
 
 void initPalette();
 
+//functions in text.c
+void drawString(int row, int col, char *s, COLOR clr);
+
+//global functions
+int sprintf(char *str, const char *format, ...);
+
+char lbuf[13];
 int main() {
     REG_DISPCNT = MODE_4 | BG2_EN;
     initPalette();
+
+    sprintf(lbuf, "^Best square ever");
+
+    drawString(30,10, lbuf, 1);
+
     drawRect4(10,10,20,20,120);
     vid_flip();
     while (1);
