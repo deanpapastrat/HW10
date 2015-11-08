@@ -20,7 +20,7 @@ int main() {
     drawString(10, 50, lbuf, 76);
 
     drawImage4(120, 80, 0, 0, GHOST_WIDTH, GHOST_HEIGHT, ghost);
-    drawSprite4(0, 0, 0, 0, PLAYER14_WIDTH, PLAYER14_HEIGHT, 0, player14);
+    //drawSprite4(0, 0, 0, 0, PLAYER14_WIDTH, PLAYER14_HEIGHT, 0, player14);
     vid_flip();
     while (1);
 }

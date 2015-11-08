@@ -2,8 +2,7 @@
 // Created by Mark on 11/8/2015.
 //
 
-#ifndef HW10_MYLIB_H
-#define HW10_MYLIB_H
+
 
 #define REG_DISPCNT *(unsigned short*) 0x4000000
 
@@ -15,8 +14,6 @@
 #define vid_mem_front    ((COLOR*)MEM_VRAM)
 #define vid_mem_back    ((COLOR*)MEM_VRAM_BACK)
 #define DCNT_PAGE            0x0010
-unsigned short *videoBuffer = (unsigned short *) 0x6000000;
-#endif //HW10_MYLIB_H
 
 u16 *vid_flip();
 void drawImage4(int x, int y, int sourcex, int sourcey, int width, int height, const unsigned short *image);

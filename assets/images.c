@@ -1,8 +1,8 @@
 /*
  * Exported with nin10kit v1.1
- * Invocation command was nin10kit -mode=4 images background.bmp gameover.bmp longbackground.png ghost.png player1.0.bmp player1.1.bmp player1.2.bmp player1.3.bmp player1.4.bmp player2.bmp title.bmp 
+ * Invocation command was nin10kit -mode=4 images background.bmp gameover.bmp longbackground.png ghost.png player1.0.bmp player1.1.bmp player1.2.bmp player1.3.bmp player1.4.bmp player2.bmp title.bmp
  * Time-stamp: Saturday 11/07/2015, 21:52:13
- * 
+ *
  * Image Information
  * -----------------
  * background.bmp 240@160
@@ -16,10 +16,10 @@
  * player1.4.bmp 100@100
  * player2.bmp 100@100
  * title.bmp 240@160
- * 
+ *
  * Quote/Fortune of the Day!
  * -------------------------
- * 
+ *
  * All bug reports / feature requests are to be sent to Brandon (bwhitehead0308@gmail.com)
  */
 
