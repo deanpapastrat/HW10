@@ -2,22 +2,8 @@
 // Created by Mark on 11/7/2015.
 //
 
-#define REG_DISPCNT *(unsigned short*) 0x4000000
-
-#define SCANLINECOUNTER *(volatile unsigned short*) 0x4000006
-#define MEM_VRAM    0x06000000
-#define VRAM_PAGE_SIZE    0x0A000
-#define MEM_VRAM_BACK    (MEM_VRAM+ VRAM_PAGE_SIZE)
-#define vid_mem            ((COLOR*)MEM_VRAM)
-#define vid_mem_front    ((COLOR*)MEM_VRAM)
-#define vid_mem_back    ((COLOR*)MEM_VRAM_BACK)
-#define DCNT_PAGE            0x0010
-unsigned short *videoBuffer = (unsigned short *) 0x6000000;
-
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef u16 COLOR;
+#include "mylib.h"
+#include "main.h"
 
 COLOR *vid_page = vid_mem_back;
 
@@ -31,6 +17,25 @@ u16 *vid_flip() {
 void waitForVBlank() {
     while (SCANLINECOUNTER > 160);
     while (SCANLINECOUNTER < 160);
+}
+
+void drawImage4(int x, int y, int sourcex, int sourcey, int width, int height, const unsigned short *image) {
+
+    //if image would draw past the screen, stop at the screen
+    int maxx = 240 > width + x ? width + x : 240;
+    int maxy = 160 > height + y ? height + y : 160;
+    maxx = maxx / 2;
+    maxy = maxy / 2;
+
+    for (int iy = 0; iy < maxy; iy++) {
+        //source is the image address with the offset of the source looking
+        DMA[3].src = image + ((sourcey + iy) * width) + sourcex;
+        //dst is the location on the current page, offset by x and y
+        DMA[3].dst = &vid_page[((y + iy) * 240 + x) / 2];
+        //turn dma on and go for the correct number of transfers to not go over either memory width
+        DMA[3].cnt = DMA_ON | maxx;
+    }
+
 }
 
 void drawPixel4(int x, int y, u8 clrid) {

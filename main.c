@@ -3,6 +3,7 @@
 //
 
 #include "main.h"
+#include "assets/images.h"
 #include <stdio.h>
 
 //functions in mylib.c
@@ -11,6 +12,8 @@ void waitForVBlank();
 void drawPixel4(int x, int y, u8 clrid);
 
 void drawRect4(int left, int top, int right, int bottom, COLOR clr);
+
+void drawImage4(int x, int y, int sourcex, int sourcey, int width, int height, const unsigned short *image);
 
 u16 *vid_flip();
 
@@ -28,11 +31,10 @@ int main() {
     REG_DISPCNT = MODE_4 | BG2_EN;
     initPalette();
 
-    sprintf(lbuf, "^Best square ever");
+    sprintf(lbuf, "< Its a spooky ghost");
+    drawString(10, 50, lbuf, 76);
 
-    drawString(30, 10, lbuf, 1);
-
-    drawRect4(10, 10, 20, 20, 120);
+   drawImage4(0, 0, 0, 0, GHOST_WIDTH, GHOST_HEIGHT, ghost);
     vid_flip();
     while (1);
 }
@@ -40,8 +42,7 @@ int main() {
 unsigned short *palette = (unsigned short *) 0x5000000;
 
 void initPalette() {
-    volatile u16 colors = 0xFFFF;
-    DMA[3].src = &colors;
-    DMA[3].dst = palette + 1;
-    DMA[3].cnt = DMA_SOURCE_FIXED | DMA_ON | 255;
+    DMA[3].src = &images_palette;
+    DMA[3].dst = palette;
+    DMA[3].cnt = DMA_ON | sizeof(images_palette);
 }

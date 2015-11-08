@@ -26,7 +26,7 @@
 #ifndef IMAGES_H
 #define IMAGES_H
 
-extern const unsigned short images_palette[75];
+extern const unsigned short images_palette[76];
 #define IMAGES_PALETTE_SIZE 75
 
 extern const unsigned short background[19200];
