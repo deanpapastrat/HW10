@@ -25,6 +25,7 @@ int main() {
     while (1);
 }
 
+//this gets done here because drawing gets done here
 unsigned short *palette = (unsigned short *) 0x5000000;
 
 void initPalette() {
