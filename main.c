@@ -19,11 +19,15 @@ int main() {
     sprintf(lbuf, "< Its a spooky ghost");
     drawString(10, 50, lbuf, 76);
 
-    drawImage4(0,0,0,0,BACKGROUND_WIDTH, BACKGROUND_HEIGHT, background);
-    drawImage4(0, 0, 0, 0, GHOST_WIDTH, GHOST_HEIGHT, ghost);
-    drawSprite4(50, 87, 0, 0, PLAYER14_WIDTH, PLAYER14_HEIGHT, 0 ,player14);
-    vid_flip();
-    while (1);
+    int progress = 500;
+    while (1) {
+        waitForVBlank();
+        drawImage4(0, 0, progress, 0, LONGBACKGROUND_WIDTH, LONGBACKGROUND_HEIGHT, longbackground);
+        drawSprite4(0, 87, 0, 0, PLAYER14_WIDTH, PLAYER14_HEIGHT, 0, player14);
+        vid_flip();
+        while (!KEY_DOWN_NOW(BUTTON_RIGHT));
+        progress++;
+    }
 }
 
 //this gets done here because drawing gets done here

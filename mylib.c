@@ -21,6 +21,9 @@ void waitForVBlank() {
 
 void drawImage4(int x, int y, int sourcex, int sourcey, int width, int height, const unsigned short *image) {
 
+    if (sourcex + 240 > width || sourcey + 160 > height)
+        return;
+
     int xcopies = width - sourcex;
     int maxy = height;
 
