@@ -9,18 +9,19 @@
 #include <stdio.h>
 
 //text buffer for writing text
-char lbuf[13];
+char lbuf[15];
 
 int main() {
     REG_DISPCNT = MODE_4 | BG2_EN;
     initPalette();
 
-    fillScreen4(75);
+    fillScreen4(0);
     sprintf(lbuf, "< Its a spooky ghost");
     drawString(10, 50, lbuf, 76);
 
-    drawImage4(120, 80, 0, 0, GHOST_WIDTH, GHOST_HEIGHT, ghost);
-    //drawSprite4(0, 0, 0, 0, PLAYER14_WIDTH, PLAYER14_HEIGHT, 0, player14);
+    drawImage4(0,0,0,0,BACKGROUND_WIDTH, BACKGROUND_HEIGHT, background);
+    drawImage4(0, 0, 0, 0, GHOST_WIDTH, GHOST_HEIGHT, ghost);
+    drawSprite4(50, 87, 0, 0, PLAYER14_WIDTH, PLAYER14_HEIGHT, 0 ,player14);
     vid_flip();
     while (1);
 }

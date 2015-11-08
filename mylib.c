@@ -25,26 +25,24 @@ void drawImage4(int x, int y, int sourcex, int sourcey, int width, int height, c
     int maxy = height;
 
     height = height;
-    maxy = maxy / 2;
     xcopies = xcopies / 2;
 
     //if would go to next row, change copies to hit the 240th pixel and no futher
-    if (x + xcopies > 240) {
-        xcopies = (240 - x) / 2;
-    }
+//    if (x + xcopies > 240) {
+//        xcopies = (240 - x) / 2;
+//    }
     //if we would start writing to random memory (bad), stop at the 160th row
-    if (y + maxy > 160) {
-        maxy = (160 - y) / 2;
+    if (y + height > 160) {
+        maxy = (160 - y);
     }
-
 
     for (int iy = 0; iy < maxy; iy++) {
         //source is the image address with the offset of the source looking
-        DMA[3].src = image + ((sourcey + iy) * width) + sourcex;
+        DMA[3].src = (image + ((sourcey + iy) * width + sourcex)/ 2);
         //dst is the location on the current page, offset by x and y
-        DMA[3].dst = &vid_page[((y + iy) * 240 + x) / 2];
+        DMA[3].dst = &vid_page[((y + iy) * 120 + x)];
         //turn dma on and go for the correct number of transfers to not go over either memory width
-        DMA[3].cnt = DMA_ON | xcopies;
+        DMA[3].cnt = DMA_ON | DMA_16 | xcopies;
     }
 
 }
@@ -52,22 +50,18 @@ void drawImage4(int x, int y, int sourcex, int sourcey, int width, int height, c
 void drawSprite4(int x, int y, int sourcex, int sourcey, int width, int height, u8 colorkey,
                  const unsigned short *image) {
 
-    int maxx = width - sourcex;
-    int maxy = height;
-
-    height = height;
+    int maxx = (width - sourcex) / 2;
+    int maxy = height / 2;
 
     //if would go to next row, change copies to hit the 240th pixel and no futher
     if (x + maxx > 240) {
-        maxx = 240 - x;
+        maxx = (240 - x);
     }
     //if we would start writing to random memory (bad), stop at the 160th row
     if (y + maxy > 160) {
-        maxy = 160 - y;
+        maxy = (160 - y + height) / 2;
     }
 
-    maxy = maxy / 2;
-    maxx = maxx / 2;
 
     for (int ix = 0; ix < maxx; ix++) {
         for (int iy = 0; iy < maxy; iy++) {
