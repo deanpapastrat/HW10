@@ -3,38 +3,24 @@
 //
 
 #include "main.h"
+#include "mylib.h"
 #include "assets/images.h"
+#include "assets/text.h"
 #include <stdio.h>
 
-//functions in mylib.c
-void waitForVBlank();
-
-void drawPixel4(int x, int y, u8 clrid);
-
-void drawRect4(int left, int top, int right, int bottom, COLOR clr);
-
-void drawImage4(int x, int y, int sourcex, int sourcey, int width, int height, const unsigned short *image);
-
-u16 *vid_flip();
-
-void initPalette();
-
-//functions in text.c
-void drawString(int row, int col, char *s, COLOR clr);
-
-//global functions
-int sprintf(char *str, const char *format, ...);
-
+//text buffer for writing text
 char lbuf[13];
 
 int main() {
     REG_DISPCNT = MODE_4 | BG2_EN;
     initPalette();
 
+    fillScreen4(75);
     sprintf(lbuf, "< Its a spooky ghost");
     drawString(10, 50, lbuf, 76);
 
-   drawImage4(0, 0, 0, 0, GHOST_WIDTH, GHOST_HEIGHT, ghost);
+    drawImage4(120, 80, 0, 0, GHOST_WIDTH, GHOST_HEIGHT, ghost);
+    drawSprite4(0, 0, 0, 0, PLAYER14_WIDTH, PLAYER14_HEIGHT, 0, player14);
     vid_flip();
     while (1);
 }

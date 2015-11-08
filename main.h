@@ -58,4 +58,11 @@ typedef struct {
     volatile u32 cnt;
 } DMA_CONTROLLER;
 
+#ifndef HW10_MYLIB_H
+#define HW10_MYLIB_H
+
+void initPalette();
+
+#endif
+
 

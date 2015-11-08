@@ -17,3 +17,10 @@
 #define DCNT_PAGE            0x0010
 unsigned short *videoBuffer = (unsigned short *) 0x6000000;
 #endif //HW10_MYLIB_H
+
+u16 *vid_flip();
+void drawImage4(int x, int y, int sourcex, int sourcey, int width, int height, const unsigned short *image);
+void drawSprite4(int x, int y, int sourcex, int sourcey, int width, int height, u8 colorkey, const unsigned short *image);
+void drawPixel4(int x, int y, u8 clrid);
+void drawRect4(int left, int top, int right, int bottom, COLOR clr);
+void fillScreen4(COLOR clr);
