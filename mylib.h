@@ -16,9 +16,10 @@
 #define DCNT_PAGE            0x0010
 
 u16 *vid_flip();
-void drawImage4(int x, int y, int sourcex, int sourcey, int width, int height, const unsigned short *image);
+void drawImageOffset4(int x, int y, int sourcex, int sourcey, int width, int height, const unsigned short *image);
+void drawImage4(int r, int c, int width, int height, const u16* image);
 void drawSprite4(int x, int y, int sourcex, int sourcey, int width, int height, u8 colorkey, const unsigned short *image);
 void drawPixel4(int x, int y, u8 clrid);
-void drawRect4(int left, int top, int right, int bottom, COLOR clr);
+void drawRect4(int r, int c, int width, int height, u8 colorkey);
 void fillScreen4(COLOR clr);
 void waitForVBlank();
