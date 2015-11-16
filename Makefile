@@ -7,12 +7,6 @@
 # The name of your desired GBA game
 # This should be a just a name i.e MyFirstGBAGame
 # No SPACES AFTER THE NAME.
-PROGNAME = HW10
-
-# The object files you want to compile into your program
-# This should be a space (SPACE!) separated list of .o files
-OFILES = main.o mylib.o assets/images.o assets/text.o assets/font.o
-
 # The header files you have created.
 # This is necessary to determine when to recompile for files.
 # This should be a space (SPACE!) separated list of .h files
